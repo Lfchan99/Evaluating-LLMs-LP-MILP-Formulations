@@ -169,7 +169,11 @@ def process_problems_bulk(files_list, model_alias, model_id, current_temp, resum
                         temperature=current_temp, 
                         response_format={"type": "json_object"},
                         stream=False,
-                        timeout=300.0 
+                        timeout=300.0,
+                        extra_body={
+                            "top_k": 20,
+                            "chat_template_kwargs": {"enable_thinking": False},
+                        }
                     )
                     
                     end_time = time.time()  
